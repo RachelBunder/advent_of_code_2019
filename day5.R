@@ -11,10 +11,19 @@ run_ops_codes <- function(noun, verb)
     if(op_codes[i]==1)
     {
       op_codes[op_codes[i+3]+1] <- op_codes[op_codes[i+1]+1] + op_codes[op_codes[i+2]+1]
+      step_size <- 4
     }
+    # Multiplies
     else if (op_codes[i]==2)
     {
       op_codes[op_codes[i+3]+1] <- op_codes[op_codes[i+1]+1] * op_codes[op_codes[i+2]+1]
+      step_size <- 4
+    }
+    # Value to position
+    else if (op_codes[i]== 3)
+    {
+      op_codes[op_codes[i+1]+1] <- readline(prompt='Input needed')
+      step_size <- 2
     }
     else if (op_codes[i]==99)
     {
@@ -24,7 +33,7 @@ run_ops_codes <- function(noun, verb)
     {
       print("Didn't meet conditions, investigate")
     }
-    i <- i + 4
+    i <- i + step_size
   }
   op_codes
 }
@@ -53,5 +62,5 @@ for(noun in 0:99)
   }
   
 }
-print(100*noun + verb)?
+print(100*noun + verb)
   
