@@ -1,8 +1,8 @@
 run_ops_codes <- function(noun, verb)
 {
-  op_codes <- scan('day2.txt', sep=',', quiet=TRUE)
-  op_codes[2] <- noun
-  op_codes[3] <- verb
+  op_codes <- scan('day5_test.txt', sep=',', quiet=TRUE)
+ # op_codes[2] <- noun
+  #op_codes[3] <- verb
   
   i <- 1
   while(i <= length(op_codes))
@@ -20,9 +20,16 @@ run_ops_codes <- function(noun, verb)
       step_size <- 4
     }
     # Value to position
-    else if (op_codes[i]== 3)
+    else if (op_codes[i] == 3)
     {
-      op_codes[op_codes[i+1]+1] <- readline(prompt='Input needed')
+      print(op_codes[i+1]+1)
+      op_codes[op_codes[i+1]+1] <- readline(prompt='Input needed: ')
+      step_size <- 2
+    }
+    # Print
+    else if (op_codes[i] == 4)
+    {
+      print(op_codes[op_codes[i+1]+1])
       step_size <- 2
     }
     else if (op_codes[i]==99)
@@ -37,30 +44,5 @@ run_ops_codes <- function(noun, verb)
   }
   op_codes
 }
-# Part 1
-part1_code <- run_ops_codes(1, 12)
-print(part1_code[1])
+run_ops_codes(2,3)
 
-# Part 2
-target_value <- 19690720
-found=FALSE
-for(noun in 0:99)
-{
-  for(verb in 0:99)
-  {
-    result <- run_ops_codes(noun, verb)
-    if(target_value == result[1])
-    {
-      print(sprintf('Found target, %s, %s', noun, verb))
-      found=TRUE
-      break
-    }
-  }
-  if(found)
-  {
-    break
-  }
-  
-}
-print(100*noun + verb)
-  
